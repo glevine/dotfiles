@@ -25,6 +25,7 @@ brew 'libcaca', args: ['with-imlib2']
 brew 'libgit2'
 brew 'ngrok'
 brew 'ntfs-3g'
+brew 'nvm'
 brew 'openssl'
 brew 'osxutils'
 brew 'parallel'
