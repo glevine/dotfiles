@@ -23,3 +23,7 @@ $ZSH/script/install
 # Cleanup old versions
 echo "> brew cleanup"
 brew cleanup
+
+# Are there upstream updates?
+echo "> check upstream"
+echo $(cd $ZSH && git fetch -v --dry-run upstream master)
