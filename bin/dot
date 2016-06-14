@@ -21,4 +21,5 @@ echo "› $ZSH/script/install"
 $ZSH/script/install
 
 # Cleanup old versions
+echo "> brew cleanup"
 brew cleanup
