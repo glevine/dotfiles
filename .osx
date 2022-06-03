@@ -60,7 +60,23 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 # Set background to dark-grey color
-osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/System/Library/Desktop Pictures/Solid Colors/Stone.png"'
+# osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/System/Library/Desktop Pictures/Solid Colors/Stone.png"'
+
+# Set dark mode
+# source: https://brettterpstra.com/2018/09/26/shell-tricks-toggling-dark-mode-from-terminal/
+osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+
+# Set clock format
+# source: https://macos-defaults.com/menubar/dateformat.html
+defaults write com.apple.menuextra.clock IsAnalog -bool false
+defaults write com.apple.menuextra.clock DateFormat -string "\"EEE MMM d h:mm:ss a\""
+defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
+
+# Set battery display
+defaults write com.apple.menuextra.battery ShowPercent -bool true
+
+# Restart the menu bar
+killall -KILL SystemUIServer >/dev/null 2>&1
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -83,8 +99,8 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 defaults write NSGlobalDomain InitialKeyRepeat -int 20
 defaults write NSGlobalDomain KeyRepeat -int 1
 
-# Disable auto-correct
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+# Enable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
 
 ###############################################################################
 # Screen                                                                      #
@@ -262,5 +278,14 @@ if [[ ! ($* == *--no-restart*) ]]; then
     killall "${app}" > /dev/null 2>&1
   done
 fi
+
+###############################################################################
+# Xcode                                                                       #
+###############################################################################
+
+# Enable developer mode.
+# source: https://github.com/go-delve/delve/blob/master/Documentation/installation/README.md#macos-considerations
+sudo /usr/sbin/DevToolsSecurity -enable
+sudo dscl . append /Groups/_developer GroupMembership $(whoami)
 
 printf "Please log out and log back in to make all settings take effect.\n"

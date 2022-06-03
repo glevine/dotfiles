@@ -1,4 +1,6 @@
-*.DS_Store
-*.LSOverride
-Thumbs.db
-.bundle
+*~
+**/node_modules
+.*.swp
+.DS_Store
+.idea
+.vscode
