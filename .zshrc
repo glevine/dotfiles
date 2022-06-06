@@ -1,7 +1,13 @@
 # Homebrew
 if command -v brew &>/dev/null; then
+    # Traditional installation.
     eval "$(brew shellenv)"
+elif command -v /opt/homebrew/bin/brew &>/dev/null; then
+    # M1 installation.
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
+if command -v brew &>/dev/null; then
     # source: https://formulae.brew.sh/formula/zsh-completions
     fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" "$HOMEBREW_PREFIX/share/zsh-completions" $fpath)
 
