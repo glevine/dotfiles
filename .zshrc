@@ -53,6 +53,9 @@ if [ -f "$USER_ALIASES" ]; then
     source "$USER_ALIASES"
 fi
 
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv &>/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
