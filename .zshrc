@@ -56,6 +56,14 @@ fi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# openssl
+if command -v brew &>/dev/null; then
+    export PATH="/opt/$(brew --prefix openssl)/bin:$PATH"
+    export LDFLAGS="-L$(brew --prefix openssl)/lib"
+    export CPPFLAGS="-I$(brew --prefix openssl)/include"
+    export PKG_CONFIG_PATH="$(brew --prefix openssl)/lib/pkgconfig"
+fi
+
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv &>/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
