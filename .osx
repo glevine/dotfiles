@@ -269,6 +269,14 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
 ###############################################################################
+# Login Items                                                                 #
+# source: https://hints.macworld.com/article.php?story=20111226075701552      #
+###############################################################################
+
+# Run Docker on startup.
+osascript -e 'tell application "System Events" to make login item at end with properties {name: "Docker", path:"/Applications/Docker.app", hidden:false}'
+
+###############################################################################
 # Kill/restart affected applications                                          #
 ###############################################################################
 
