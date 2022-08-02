@@ -56,6 +56,10 @@ fi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# multiverse
+export PATH="$HOME/github.com/sugarcrm/multiverse/tools/bin:$PATH"
+source $HOME/github.com/sugarcrm/multiverse/tools/complete.bash
+
 # openssl
 if command -v brew &>/dev/null; then
     export PATH="$(brew --prefix openssl)/bin:$PATH"
