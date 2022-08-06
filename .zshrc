@@ -7,41 +7,14 @@ elif command -v /opt/homebrew/bin/brew &>/dev/null; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-if command -v brew &>/dev/null; then
-    # source: https://formulae.brew.sh/formula/zsh-completions
-    if brew ls --versions zsh-completions &>/dev/null; then
-        fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" "$HOMEBREW_PREFIX/share/zsh-completions" $fpath)
-    fi
+# source: https://formulae.brew.sh/formula/zsh-completions
+fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" "$HOMEBREW_PREFIX/share/zsh-completions" $fpath)
 
-    # source: https://github.com/Homebrew/homebrew-command-not-found
-    HB_CNF_HANDLER=$HOMEBREW_REPOSITORY/Library/Taps/homebrew/homebrew-command-not-found/handler.sh
+# source: https://github.com/Homebrew/homebrew-command-not-found
+HB_CNF_HANDLER=$HOMEBREW_REPOSITORY/Library/Taps/homebrew/homebrew-command-not-found/handler.sh
 
-    if [ -f "$HB_CNF_HANDLER" ]; then
-        source "$HB_CNF_HANDLER"
-    fi
-
-    # source: https://formulae.brew.sh/formula/coreutils
-    if brew ls --versions coreutils &>/dev/null; then
-        export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
-    fi
-
-    # source: https://formulae.brew.sh/formula/findutils
-    if brew ls --versions findutils &>/dev/null; then
-        export PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
-    fi
-
-    # source: https://formulae.brew.sh/formula/gnu-sed
-    if brew ls --versions gnu-sed &>/dev/null; then
-        export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
-    fi
-
-    # openssl
-    if brew ls --versions openssl &>/dev/null; then
-        export PATH="$(brew --prefix openssl)/bin:$PATH"
-        export LDFLAGS="-L$(brew --prefix openssl)/lib"
-        export CPPFLAGS="-I$(brew --prefix openssl)/include"
-        export PKG_CONFIG_PATH="$(brew --prefix openssl)/lib/pkgconfig"
-    fi
+if [ -f "$HB_CNF_HANDLER" ]; then
+    source "$HB_CNF_HANDLER"
 fi
 
 # oh-my-zsh
@@ -71,6 +44,14 @@ export CLICOLOR_FORCE=1
 # Don't require escaping globbing characters in zsh.
 unsetopt nomatch
 
+# Use GNU tools without the "g" prefix.
+# source: https://formulae.brew.sh/formula/coreutils
+# source: https://formulae.brew.sh/formula/findutils
+# source: https://formulae.brew.sh/formula/gnu-sed
+export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
+
 # Aliases
 USER_ALIASES=$HOME/.aliases
 
@@ -85,23 +66,24 @@ fi
 MULTIVERSE=$HOME/github.com/sugarcrm/multiverse
 
 if [ -d "$MULTIVERSE" ]; then
-    export PATH="$HOME/github.com/sugarcrm/multiverse/tools/bin:$PATH"
-    source $HOME/github.com/sugarcrm/multiverse/tools/complete.bash
+    export PATH="$MULTIVERSE/tools/bin:$PATH"
+    source $MULTIVERSE/tools/complete.bash
 fi
+
+# openssl
+export PATH="$HOMEBREW_PREFIX/opt/openssl/bin:$PATH"
+export LDFLAGS="-L$HOMEBREW_PREFIX/opt/openssl/lib"
+export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/openssl/include"
+export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/openssl/lib/pkgconfig"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv &>/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-if command -v pyenv-virtualenv-init &>/dev/null; then
-    eval "$(pyenv virtualenv-init -)"
-fi
+eval "$(pyenv virtualenv-init -)"
 
 # thefuck
-if command -v thefuck &>/dev/null; then
-    eval "$(thefuck --alias)"
-fi
+eval "$(thefuck --alias)"
 
 # volta
 export VOLTA_HOME=$HOME/.volta
@@ -111,11 +93,9 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # zsh-syntax-highlighting must be at the end but zsh-history-substring-search must come after zsh-syntax-highlighting.
 # source: https://github.com/zsh-users/zsh-syntax-highlighting
 # source: https://github.com/zsh-users/zsh-history-substring-search
-if command -v brew &>/dev/null; then
-    source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-fi
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Allow history search via up/down keys.
 bindkey "^[[A" history-substring-search-up

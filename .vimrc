@@ -36,4 +36,4 @@ set showmatch           " show matching bracket
 set clipboard=unnamed   " allow yy, etc. to interact with OS X clipboard
 
 " fzf
-set rtp+="$(brew --prefix)/opt/fzf"
+set rtp+="$HOMEBREW_PREFIX/opt/fzf"
