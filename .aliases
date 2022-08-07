@@ -1,4 +1,5 @@
 alias kc="kubectl"
 alias kctx="kubectx"
 alias kns="kubens"
+alias ls="ls -alhF --group-directories-first --color=auto"
 alias zshrc="code $HOME/.zshrc"
