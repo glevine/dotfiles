@@ -62,14 +62,6 @@ fi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# multiverse
-MULTIVERSE=$HOME/github.com/sugarcrm/multiverse
-
-if [ -d "$MULTIVERSE" ]; then
-    export PATH="$MULTIVERSE/tools/bin:$PATH"
-    source $MULTIVERSE/tools/complete.bash
-fi
-
 # openssl
 export PATH="$HOMEBREW_PREFIX/opt/openssl/bin:$PATH"
 export LDFLAGS="-L$HOMEBREW_PREFIX/opt/openssl/lib"
@@ -88,6 +80,18 @@ eval "$(thefuck --alias)"
 # volta
 export VOLTA_HOME=$HOME/.volta
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# Add multiverse tools to the PATH as late as possible.
+if [ -d "$HOME/github.com/sugarcrm/multiverse" ]; then
+    export PATH="$HOME/github.com/sugarcrm/multiverse/tools/bin:$PATH"
+fi
+
+# The multiverse tools bin wrapper doesn't support sourcing from zsh.
+# source <(kubectl completion zsh)
+# source <(skaffold completion zsh)
+
+# kubectx completions are not included in the tarball that multiverse downloads.
+# kubens completions are not included in the tarball that multiverse downloads.
 
 # All the zsh extensions should be last.
 # zsh-syntax-highlighting must be at the end but zsh-history-substring-search must come after zsh-syntax-highlighting.

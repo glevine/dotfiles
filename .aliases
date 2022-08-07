@@ -1,1 +1,4 @@
+alias kc="kubectl"
+alias kctx="kubectx"
+alias kns="kubens"
 alias zshrc="code $HOME/.zshrc"
