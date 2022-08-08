@@ -88,7 +88,7 @@ if [ -d "$HOME/github.com/sugarcrm/multiverse" ]; then
     # kubectl
     source <(kubectl completion zsh)
 
-    # FIXME: skaffold is broken: any skaffold command yields "Segmentation fault: 11  "$BIN" "$@""
+    # skaffold zsh-completions are not available in skaffold@0.21.1
     # source <(skaffold completion zsh)
 
     # kubectx completions are not included in the tarball that multiverse downloads.
