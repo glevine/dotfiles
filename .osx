@@ -77,7 +77,7 @@ defaults write com.apple.menuextra.clock DateFormat -string "\"EEE MMM d h:mm:ss
 defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
 
 # Set battery display
-defaults write com.apple.menuextra.battery ShowPercent -bool true
+defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true
 
 # Restart the menu bar
 killall -KILL SystemUIServer >/dev/null 2>&1
