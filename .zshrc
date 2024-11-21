@@ -62,6 +62,10 @@ fi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# java
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
+
 # openssl
 export PATH="$HOMEBREW_PREFIX/opt/openssl/bin:$PATH"
 export LDFLAGS="-L$HOMEBREW_PREFIX/opt/openssl/lib"
