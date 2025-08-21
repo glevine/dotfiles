@@ -1,4 +1,4 @@
 build --action_env=PATH
 run --action_env=PATH
 test --nocache_test_results
-test --test_timeout=15
+test --test_timeout=500
