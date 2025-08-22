@@ -3,3 +3,8 @@ alias kctx="kubectx"
 alias kns="kubens"
 alias ls="ls -alhF --group-directories-first --color=auto"
 alias zrc="code $HOME/.zshrc"
+
+if brew alias | grep -q "caveats="; then
+    brew unalias caveats
+fi
+brew alias caveats='!sh -c '\''for formula in $(brew list); do info=$(brew info "$formula"); if echo "$info" | grep -q "^==> Caveats$"; then echo "$info" | head -n 1; echo "$info" | awk "/^==> Caveats\$/ {flag=1; next} /^==>/ && flag {flag=0} flag"; echo; fi; done'\'
