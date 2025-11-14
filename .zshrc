@@ -10,11 +10,11 @@ fi
 # source: https://formulae.brew.sh/formula/zsh-completions
 fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" "$HOMEBREW_PREFIX/share/zsh-completions" $fpath)
 
-# source: https://github.com/Homebrew/homebrew-command-not-found
-HB_CNF_HANDLER=$HOMEBREW_REPOSITORY/Library/Taps/homebrew/homebrew-command-not-found/handler.sh
+# source: https://docs.brew.sh/Command-Not-Found
+HOMEBREW_COMMAND_NOT_FOUND_HANDLER="$(brew --repository)/Library/Homebrew/command-not-found/handler.sh"
 
-if [ -f "$HB_CNF_HANDLER" ]; then
-    source "$HB_CNF_HANDLER"
+if [ -f "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER" ]; then
+    source "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER";
 fi
 
 # oh-my-zsh
