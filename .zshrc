@@ -44,6 +44,12 @@ export CLICOLOR_FORCE=1
 # Don't require escaping globbing characters in zsh.
 unsetopt nomatch
 
+# Enable command correction but don't correct everything automatically.
+# Autocorrection for `bazel test` to `bazel tests` or `go test` to `go tests` is
+# annoying. However, sometimes I do mispell commands.
+unsetopt correct_all
+setopt correct
+
 # Use GNU tools without the "g" prefix.
 # source: https://formulae.brew.sh/formula/coreutils
 # source: https://formulae.brew.sh/formula/findutils
