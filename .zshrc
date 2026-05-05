@@ -55,8 +55,11 @@ setopt correct
 # source: https://formulae.brew.sh/formula/findutils
 # source: https://formulae.brew.sh/formula/gnu-sed
 export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
 export PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
+export MANPATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnuman:$MANPATH"
 export PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
+export MANPATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
 # Aliases
 USER_ALIASES=$HOME/.aliases
@@ -64,6 +67,9 @@ USER_ALIASES=$HOME/.aliases
 if [ -f "$USER_ALIASES" ]; then
     source "$USER_ALIASES"
 fi
+
+# curl
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -73,10 +79,15 @@ export PATH=$HOME/go/bin:$PATH
 
 # java
 export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 
 # kubernetes
 export KUBE_EDITOR="vim"
+
+# ngrok
+if command -v ngrok &>/dev/null; then
+    eval "$(ngrok completion)"
+fi
 
 # openssl
 export PATH="$HOMEBREW_PREFIX/opt/openssl/bin:$PATH"
@@ -89,6 +100,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv &>/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# ssh-copy-id
+export PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 
 # thefuck
 eval "$(thefuck --alias)"
