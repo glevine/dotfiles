@@ -68,6 +68,9 @@ fi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# golang
+export PATH=$HOME/go/bin:$PATH
+
 # java
 export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
