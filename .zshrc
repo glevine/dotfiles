@@ -71,6 +71,9 @@ fi
 # curl
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 
+# direnv
+eval "$(direnv hook zsh)"
+
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
