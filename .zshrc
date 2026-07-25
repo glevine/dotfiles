@@ -25,7 +25,7 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(aws colored-man-pages command-not-found common-aliases copybuffer copypath copyfile fzf last-working-dir per-directory-history screen timer urltools wd volta zsh-interactive-cd)
+plugins=(aws colored-man-pages command-not-found common-aliases copybuffer copypath copyfile fzf last-working-dir per-directory-history screen timer urltools wd zsh-interactive-cd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -71,9 +71,6 @@ fi
 # curl
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 
-# direnv
-eval "$(direnv hook zsh)"
-
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -86,6 +83,9 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 
 # kubernetes
 export KUBE_EDITOR="vim"
+
+# mise
+eval "$(mise activate zsh)"
 
 # ngrok
 if command -v ngrok &>/dev/null; then
@@ -109,10 +109,6 @@ export PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 
 # thefuck
 eval "$(thefuck --alias)"
-
-# volta
-export VOLTA_HOME=$HOME/.volta
-export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Add multiverse tools to the PATH as late as possible.
 if [ -d "$HOME/github.com/sugarcrm/multiverse" ]; then
