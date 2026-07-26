@@ -25,7 +25,7 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(aws colored-man-pages command-not-found common-aliases copybuffer copypath copyfile fzf last-working-dir per-directory-history screen timer urltools wd zsh-interactive-cd)
+plugins=(aws colored-man-pages command-not-found common-aliases copybuffer copypath copyfile docker docker-compose fzf last-working-dir per-directory-history screen timer urltools wd zsh-interactive-cd)
 
 source $ZSH/oh-my-zsh.sh
 
