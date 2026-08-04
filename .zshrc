@@ -71,6 +71,9 @@ fi
 # curl
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 
+# doit
+eval "$(doit --generate-completion zsh)"
+
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
